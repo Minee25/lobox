@@ -29,8 +29,8 @@ for _, c in ipairs(containers()) do
   for _, v in pairs(c:GetChildren()) do before[v] = true end
 end
 
--- asset rbxassetid://10804731440 (TabList.Template) ไม่มี Shadow/Image/UIStroke
--- -> patch source ให้สร้าง child ที่ขาดก่อน Rayfield ใช้งาน
+-- asset rbxassetid://10804731440 (TabList.Template) à¹„à¸¡à¹ˆà¸¡à¸µ Shadow/Image/UIStroke
+-- -> patch source à¹ƒà¸«à¹‰à¸ªà¸£à¹‰à¸²à¸‡ child à¸—à¸µà¹ˆà¸‚à¸²à¸”à¸à¹ˆà¸­à¸™ Rayfield à¹ƒà¸Šà¹‰à¸‡à¸²à¸™
 local MARK = 'local Rayfield = game:GetObjects("rbxassetid://10804731440")[1]'
 local PATCH = [=[local Rayfield = game:GetObjects("rbxassetid://10804731440")[1]
 pcall(function()
@@ -343,7 +343,7 @@ local Window = Rayfield:CreateWindow({
   LoadingTitle = "OkieShop",
   LoadingSubtitle = "Super 91-93",
   ConfigurationSaving = { Enabled = false, FileName = "OkieShop" },
-  Discord = { Enabled = false },
+  Discord = false,
   KeySystem = false,
 })
 
@@ -476,7 +476,7 @@ local GoToggle = AutoTab:CreateToggle({
   end,
 })
 AutoTab:CreateToggle({
-  Name = "Loop (วนซ้ำ)",
+  Name = "Loop (à¸§à¸™à¸‹à¹‰à¸³)",
   CurrentValue = false,
   Flag = "LoopFlag",
   Callback = function(v) _G.Loop = v end,
@@ -494,7 +494,7 @@ AutoTab:CreateToggle({
   Callback = function(v) _G.Claim = v end,
 })
 AutoTab:CreateSlider({
-  Name = "Default Delay (step ไม่ระบุ)",
+  Name = "Default Delay (step à¹„à¸¡à¹ˆà¸£à¸°à¸šà¸¸)",
   Range = {0.5, 10},
   Increment = 0.5,
   Suffix = "s",
@@ -503,7 +503,7 @@ AutoTab:CreateSlider({
   Callback = function(v) _G.DefaultDelay = v end,
 })
 AutoTab:CreateButton({
-  Name = "Minimize (ย่อ + icon ลอย OS)",
+  Name = "Minimize (à¸¢à¹ˆà¸­ + icon à¸¥à¸­à¸¢ OS)",
   Callback = hideUI,
 })
 
@@ -511,13 +511,13 @@ AutoTab:CreateButton({
 local PlayerTab = Window:CreateTab("Player")
 PlayerTab:CreateSection("Movement")
 PlayerTab:CreateToggle({
-  Name = "Fly (Joystick/WASD, กระโดด=ขึ้น C/Ctrl=ลง)",
+  Name = "Fly (Joystick/WASD, à¸à¸£à¸°à¹‚à¸”à¸”=à¸‚à¸¶à¹‰à¸™ C/Ctrl=à¸¥à¸‡)",
   CurrentValue = false,
   Flag = "FlyFlag",
   Callback = function(v) _G.Fly = v end,
 })
 PlayerTab:CreateToggle({
-  Name = "Float (ลอยกลางอากาศ)",
+  Name = "Float (à¸¥à¸­à¸¢à¸à¸¥à¸²à¸‡à¸­à¸²à¸à¸²à¸¨)",
   CurrentValue = false,
   Flag = "FloatFlag",
   Callback = function(v)
@@ -560,10 +560,10 @@ PlayerTab:CreateSlider({
 
 -- ================= STEPS TAB =================
 local StepsTab = Window:CreateTab("Steps")
-StepsTab:CreateSection("Step Editor - 1 บรรทัดต่อจุด: x,y,z,delay")
+StepsTab:CreateSection("Step Editor - 1 à¸šà¸£à¸£à¸—à¸±à¸”à¸•à¹ˆà¸­à¸ˆà¸¸à¸”: x,y,z,delay")
 StepsTab:CreateParagraph({
   Title = "Database",
-  Content = "steps บันทึกลง OkieShop/steps.txt อัตโนมัติ - จุดตอนนี้: " .. #_G.Steps,
+  Content = "steps à¸šà¸±à¸™à¸—à¸¶à¸à¸¥à¸‡ OkieShop/steps.txt à¸­à¸±à¸•à¹‚à¸™à¸¡à¸±à¸•à¸´ - à¸ˆà¸¸à¸”à¸•à¸­à¸™à¸™à¸µà¹‰: " .. #_G.Steps,
 })
 
 -- custom multiline editor (guaranteed to work)
@@ -648,7 +648,7 @@ end
 
 StepsTab:CreateButton({ Name = "Open Step Editor", Callback = openEditor })
 StepsTab:CreateButton({
-  Name = "Save จุดที่ยืนอยู่ (ใช้ default delay)",
+  Name = "Save à¸ˆà¸¸à¸”à¸—à¸µà¹ˆà¸¢à¸·à¸™à¸­à¸¢à¸¹à¹ˆ (à¹ƒà¸Šà¹‰ default delay)",
   Callback = function()
     local hrp = p.Character and p.Character:FindFirstChild("HumanoidRootPart")
     if hrp then
@@ -659,7 +659,7 @@ StepsTab:CreateButton({
   end,
 })
 StepsTab:CreateSlider({
-  Name = "Delay ของจุดล่าสุด",
+  Name = "Delay à¸‚à¸­à¸‡à¸ˆà¸¸à¸”à¸¥à¹ˆà¸²à¸ªà¸¸à¸”",
   Range = {0.5, 10},
   Increment = 0.5,
   Suffix = "s",
@@ -673,7 +673,7 @@ StepsTab:CreateSlider({
   end,
 })
 StepsTab:CreateButton({
-  Name = "ลบจุดล่าสุด",
+  Name = "à¸¥à¸šà¸ˆà¸¸à¸”à¸¥à¹ˆà¸²à¸ªà¸¸à¸”",
   Callback = function()
     table.remove(_G.Steps)
     saveDB()
@@ -681,7 +681,7 @@ StepsTab:CreateButton({
   end,
 })
 StepsTab:CreateButton({
-  Name = "ล้างทั้งหมด",
+  Name = "à¸¥à¹‰à¸²à¸‡à¸—à¸±à¹‰à¸‡à¸«à¸¡à¸”",
   Callback = function()
     _G.Steps = {}
     saveDB()
